@@ -14,4 +14,12 @@ CHIP FullAdder {
 
     PARTS:
     // Put you code here:
+    // 第一步：把 a 和 b 相加
+    HalfAdder(a=a, b=b, sum=sumAB, carry=carryAB);
+    
+    // 第二步：把前面加出來的 sumAB 與第三個輸入 c 相加
+    HalfAdder(a=sumAB, b=c, sum=sum, carry=carryC);
+    
+    // 第三步：將兩個半加器的進位用 Or 閘結合起來
+    Or(a=carryAB, b=carryC, out=carry);
 }
