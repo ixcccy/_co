@@ -19,4 +19,12 @@ CHIP Mux8Way16 {
 
     PARTS:
     // Put your code here:
+// 前四個輸入交給第一個 Mux4Way16，用 sel[0..1] 選擇
+    Mux4Way16(a=a, b=b, c=c, d=d, sel=sel[0..1], out=abcd);
+    
+    // 後四個輸入交給第二個 Mux4Way16，用 sel[0..1] 選擇
+    Mux4Way16(a=e, b=f, c=g, d=h, sel=sel[0..1], out=efgh);
+    
+    // 最後用最高位 sel[2] 決定選 abcd 還是 efgh
+    Mux16(a=abcd, b=efgh, sel=sel[2], out=out);
 }
