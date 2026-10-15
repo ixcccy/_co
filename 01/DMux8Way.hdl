@@ -17,4 +17,12 @@ CHIP DMux8Way {
 
     PARTS:
     // Put your code here:
+    // 先用最高位 sel[2] 把 in 分成兩半（前半部與後半部）
+    DMux(in=in, sel=sel[2], a=lowerHalf, b=upperHalf);
+    
+    // 前半部交給第一個 DMux4Way，用 sel[0..1] 分配給 a, b, c, d
+    DMux4Way(in=lowerHalf, sel=sel[0..1], a=a, b=b, c=c, d=d);
+    
+    // 後半部交給第二個 DMux4Way，用 sel[0..1] 分配給 e, f, g, h
+    DMux4Way(in=upperHalf, sel=sel[0..1], a=e, b=f, c=g, d=h);
 }
