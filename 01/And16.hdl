@@ -14,4 +14,11 @@ CHIP And16 {
 
     PARTS:
     // Put your code here:
-}
+CHIP And {
+    IN a, b;
+    OUT out;
+
+    PARTS:
+    Nand(a=a, b=b, out=w1);
+    Not(in=w1, out=out);
+}}
