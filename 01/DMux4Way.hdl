@@ -17,4 +17,12 @@ CHIP DMux4Way {
 
     PARTS:
     // Put your code here:
+    // 先用 sel[1] 決定資料要往前半（a, b）還是後半（c, d）
+    DMux(in=in, sel=sel[1], a=firstHalf, b=secondHalf);
+    
+    // 用 sel[0] 把前半的資料分配到 a 或 b
+    DMux(in=firstHalf, sel=sel[0], a=a, b=b);
+    
+    // 用 sel[0] 把後半的資料分配到 c 或 d
+    DMux(in=secondHalf, sel=sel[0], a=c, b=d);
 }
